@@ -1,63 +1,63 @@
-# Spor Salonu Yönetim Sistemi - Katmanlı Mimari
+# Gym Management System - Layered Architecture
 
-Bu proje, modern React uygulaması için katmanlı (layered) mimari kullanılarak yeniden yapılandırılmıştır.
+This project has been restructured using layered architecture for modern React applications.
 
-## 🏗️ Mimari Yapısı
+## 🏗️ Architecture Structure
 
 ### 1. **Constants Layer** (`src/constants/`)
-Uygulama genelinde kullanılan sabitler ve konfigürasyon değerleri.
+Constants and configuration values used throughout the application.
 
-- **`api.js`**: API endpoint'leri, HTTP metodları, status kodları
-- **`app.js`**: Uygulama sabitleri, sayfa isimleri, modal tipleri
+- **`api.js`**: API endpoints, HTTP methods, status codes
+- **`app.js`**: Application constants, page names, modal types
 
 ### 2. **Utils Layer** (`src/utils/`)
-Yardımcı fonksiyonlar ve utility sınıfları.
+Helper functions and utility classes.
 
-- **`api.js`**: HTTP client, API yardımcıları, error handling
-- **`helpers.js`**: Tarih formatlama, validasyon, string işlemleri
+- **`api.js`**: HTTP client, API helpers, error handling
+- **`helpers.js`**: Date formatting, validation, string operations
 
 ### 3. **Services Layer** (`src/services/`)
-API iletişimi ve business logic.
+API communication and business logic.
 
-- **`baseService.js`**: Tüm servisler için temel sınıf
-- **`customerService.js`**: Müşteri işlemleri
-- **`paymentService.js`**: Ödeme işlemleri
-- **`statsService.js`**: İstatistik işlemleri
+- **`baseService.js`**: Base class for all services
+- **`customerService.js`**: Customer operations
+- **`paymentService.js`**: Payment operations
+- **`statsService.js`**: Statistics operations
 
 ### 4. **Hooks Layer** (`src/hooks/`)
 Custom React hooks.
 
-- **`useApi.js`**: API çağrıları için hook'lar (useApi, useMutation, useInfiniteQuery)
+- **`useApi.js`**: Hooks for API calls (useApi, useMutation, useInfiniteQuery)
 
 ### 5. **Components Layer** (`src/components/`)
-UI bileşenleri, katmanlı olarak organize edilmiş.
+UI components, organized in layers.
 
 #### 5.1 **UI Components** (`src/components/ui/`)
-Yeniden kullanılabilir temel bileşenler:
-- **`Button.js`**: Çoklu variant ve size desteği
-- **`Modal.js`**: Modal bileşeni ve alt bileşenleri
-- **`Input.js`**: Form input bileşenleri
+Reusable basic components:
+- **`Button.js`**: Multiple variant and size support
+- **`Modal.js`**: Modal component and sub-components
+- **`Input.js`**: Form input components
 
 #### 5.2 **Layout Components** (`src/components/layout/`)
-Sayfa düzeni bileşenleri:
-- **`Layout.js`**: Ana layout wrapper
-- **`Sidebar.js`**: Navigasyon sidebar
-- **`Header.js`**: Üst kısım header
+Page layout components:
+- **`Layout.js`**: Main layout wrapper
+- **`Sidebar.js`**: Navigation sidebar
+- **`Header.js`**: Top header
 
 #### 5.3 **Page Components** (`src/components/pages/`)
-Sayfa bileşenleri:
-- **`Dashboard.js`**: Ana dashboard
-- **`Customers.js`**: Müşteri yönetimi
-- **`Payments.js`**: Ödeme yönetimi
-- **`Programs.js`**: Program yönetimi
-- **`Entries.js`**: Giriş yönetimi
-- **`Settings.js`**: Ayarlar
+Page components:
+- **`Dashboard.js`**: Main dashboard
+- **`Customers.js`**: Customer management
+- **`Payments.js`**: Payment management
+- **`Programs.js`**: Program management
+- **`Entries.js`**: Entry management
+- **`Settings.js`**: Settings
 
 #### 5.4 **Auth Components** (`src/components/auth/`)
-Kimlik doğrulama bileşenleri:
-- **`LoginModal.js`**: Giriş modal'ı
+Authentication components:
+- **`LoginModal.js`**: Login modal
 
-## 🔄 Veri Akışı
+## 🔄 Data Flow
 
 ```
 UI Components → Hooks → Services → API → Database
@@ -66,7 +66,7 @@ UI Components → Hooks → Services → API → Database
         State Management & Data Flow
 ```
 
-## 🚀 Özellikler
+## 🚀 Features
 
 ### **API Layer**
 - HTTP client wrapper
@@ -76,54 +76,54 @@ UI Components → Hooks → Services → API → Database
 - Request/response interceptors
 
 ### **State Management**
-- Custom hooks ile API state yönetimi
-- Loading, error, success state'leri
+- API state management with custom hooks
+- Loading, error, success states
 - Optimistic updates
-- Infinite scroll desteği
+- Infinite scroll support
 
 ### **UI Components**
 - Responsive design
 - Accessibility support
-- Dark/light theme hazır
+- Dark/light theme ready
 - Consistent design system
 
 ### **Error Handling**
 - Global error boundary
 - User-friendly error messages
 - Retry mechanisms
-- Fallback UI'lar
+- Fallback UIs
 
-## 📁 Dizin Yapısı
+## 📁 Directory Structure
 
 ```
 src/
-├── constants/          # Sabitler ve konfigürasyon
-├── utils/             # Yardımcı fonksiyonlar
-├── services/          # API servisleri
+├── constants/          # Constants and configuration
+├── utils/             # Helper functions
+├── services/          # API services
 ├── hooks/             # Custom React hooks
-├── components/        # UI bileşenleri
-│   ├── ui/           # Temel UI bileşenleri
-│   ├── layout/       # Layout bileşenleri
-│   ├── pages/        # Sayfa bileşenleri
-│   ├── forms/        # Form bileşenleri
-│   └── auth/         # Kimlik doğrulama
-└── index.js          # Ana uygulama
+├── components/        # UI components
+│   ├── ui/           # Basic UI components
+│   ├── layout/       # Layout components
+│   ├── pages/        # Page components
+│   ├── forms/        # Form components
+│   └── auth/         # Authentication
+└── index.js          # Main application
 ```
 
-## 🛠️ Kullanım Örnekleri
+## 🛠️ Usage Examples
 
-### **Service Kullanımı**
+### **Service Usage**
 ```javascript
 import { customerService } from '../services/customerService';
 
-// Müşteri listesi getir
+// Get customer list
 const customers = await customerService.getAll();
 
-// Yeni müşteri ekle
+// Add new customer
 const newCustomer = await customerService.create(customerData);
 ```
 
-### **Hook Kullanımı**
+### **Hook Usage**
 ```javascript
 import { useApi } from '../hooks/useApi';
 
@@ -132,68 +132,68 @@ const { data, loading, error, refetch } = useApi(
 );
 ```
 
-### **Component Kullanımı**
+### **Component Usage**
 ```javascript
 import Button from '../ui/Button';
 import Modal from '../ui/Modal';
 
 <Button variant="primary" size="lg" loading={loading}>
-  Kaydet
+  Save
 </Button>
 ```
 
-## 🔧 Geliştirme
+## 🔧 Development
 
-### **Yeni Servis Ekleme**
-1. `src/services/` altında yeni servis dosyası oluştur
-2. `BaseService`'den extend et
-3. Gerekli metodları implement et
+### **Adding New Service**
+1. Create new service file under `src/services/`
+2. Extend from `BaseService`
+3. Implement required methods
 
-### **Yeni Hook Ekleme**
-1. `src/hooks/` altında yeni hook dosyası oluştur
-2. React hooks kurallarına uy
-3. TypeScript desteği ekle (opsiyonel)
+### **Adding New Hook**
+1. Create new hook file under `src/hooks/`
+2. Follow React hooks rules
+3. Add TypeScript support (optional)
 
-### **Yeni Component Ekleme**
-1. Uygun dizin altında component oluştur
-2. Props interface tanımla
-3. Storybook story ekle (opsiyonel)
+### **Adding New Component**
+1. Create component under appropriate directory
+2. Define props interface
+3. Add Storybook story (optional)
 
-## 📊 Performans Optimizasyonları
+## 📊 Performance Optimizations
 
-- **Code Splitting**: Sayfa bazında lazy loading
-- **Memoization**: React.memo ve useMemo kullanımı
-- **Bundle Optimization**: Tree shaking ve dead code elimination
-- **Image Optimization**: Lazy loading ve responsive images
+- **Code Splitting**: Page-based lazy loading
+- **Memoization**: React.memo and useMemo usage
+- **Bundle Optimization**: Tree shaking and dead code elimination
+- **Image Optimization**: Lazy loading and responsive images
 
-## 🔒 Güvenlik
+## 🔒 Security
 
-- **Input Validation**: Tüm kullanıcı girdileri validate edilir
-- **XSS Protection**: HTML injection koruması
-- **CSRF Protection**: Cross-site request forgery koruması
-- **Authentication**: JWT token tabanlı kimlik doğrulama
+- **Input Validation**: All user inputs are validated
+- **XSS Protection**: HTML injection protection
+- **CSRF Protection**: Cross-site request forgery protection
+- **Authentication**: JWT token-based authentication
 
-## 🧪 Test Stratejisi
+## 🧪 Testing Strategy
 
-- **Unit Tests**: Jest ile component ve utility testleri
-- **Integration Tests**: API servis testleri
-- **E2E Tests**: Cypress ile end-to-end testler
-- **Visual Regression**: Storybook ile UI testleri
+- **Unit Tests**: Jest tests for components and utilities
+- **Integration Tests**: API service tests
+- **E2E Tests**: End-to-end tests with Cypress
+- **Visual Regression**: UI tests with Storybook
 
 ## 📈 Monitoring & Analytics
 
-- **Error Tracking**: Sentry entegrasyonu
-- **Performance Monitoring**: Web Vitals takibi
-- **User Analytics**: Kullanıcı davranış analizi
-- **API Monitoring**: Endpoint performans takibi
+- **Error Tracking**: Sentry integration
+- **Performance Monitoring**: Web Vitals tracking
+- **User Analytics**: User behavior analysis
+- **API Monitoring**: Endpoint performance tracking
 
 ## 🚀 Deployment
 
-- **Build Optimization**: Production build optimizasyonu
-- **Environment Configuration**: Çevre bazlı konfigürasyon
-- **CI/CD Pipeline**: Otomatik build ve deploy
-- **Health Checks**: Uygulama sağlık kontrolü
+- **Build Optimization**: Production build optimization
+- **Environment Configuration**: Environment-based configuration
+- **CI/CD Pipeline**: Automated build and deploy
+- **Health Checks**: Application health monitoring
 
 ---
 
-Bu mimari, projenin ölçeklenebilirliğini, maintainability'sini ve developer experience'ını önemli ölçüde artırır. 
+This architecture significantly improves the project's scalability, maintainability, and developer experience. 

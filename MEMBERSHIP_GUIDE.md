@@ -1,231 +1,231 @@
-# 🏋️‍♂️ Spor Salonu Üyelik Sistemi - Kullanım Kılavuzu
+# 🏋️‍♂️ Gym Membership System - User Guide
 
-## 🎯 Sistem Özellikleri
+## 🎯 System Features
 
-Bu sistem, spor salonu müşterilerinin üyeliklerini yönetmek ve devam ettirmek için geliştirilmiştir.
+This system is developed to manage and maintain gym memberships for customers.
 
-### ✅ Mevcut Özellikler
+### ✅ Available Features
 
-- **Üyelik Yönetimi**: Yeni üyelik ekleme, düzenleme, silme
-- **Üyelik Tipleri**: Farklı süre ve fiyat seçenekleri
-- **Üyelik Yenileme**: Mevcut üyeliği uzatma
-- **Durum Takibi**: Aktif, süresi dolmak üzere, süresi dolmuş üyelikler
-- **Ödeme Durumu**: Ödendi, bekliyor, gecikmiş
-- **İstatistikler**: Toplam, aktif, süresi dolan üyelik sayıları
+- **Membership Management**: Add, edit, delete new memberships
+- **Membership Types**: Different duration and price options
+- **Membership Renewal**: Extend existing memberships
+- **Status Tracking**: Active, expiring soon, expired memberships
+- **Payment Status**: Paid, pending, overdue
+- **Statistics**: Total, active, expiring membership counts
 
-## 🚀 Kurulum ve Çalıştırma
+## 🚀 Setup and Running
 
-### 1. Backend Başlatma
+### 1. Start Backend
 ```bash
 npm run server
 ```
-Backend http://localhost:3001 adresinde çalışacak
+Backend will run at http://localhost:3001
 
-### 2. Frontend Başlatma
+### 2. Start Frontend
 ```bash
 npm start
 ```
-Frontend http://localhost:3000 adresinde çalışacak
+Frontend will run at http://localhost:3000
 
-### 3. Tam Sistem Başlatma
+### 3. Start Full System
 ```bash
 npm run dev
 ```
-Hem backend hem frontend aynı anda başlar
+Both backend and frontend start simultaneously
 
-## 📱 Kullanım Adımları
+## 📱 Usage Steps
 
-### **Kullanıcı Üyeliğini Devam Ettirme**
+### **Renewing User Membership**
 
-#### 1. **Üyelik Durumunu Kontrol Etme**
-- Sol menüden "Üyelikler" sayfasına tıklayın
-- Müşteri adına göre üyelik durumunu görün
-- Durum renkleri:
-  - 🟢 **Yeşil**: Aktif üyelik
-  - 🟡 **Sarı**: Süresi dolmak üzere (7 gün içinde)
-  - 🔴 **Kırmızı**: Süresi dolmuş veya gecikmiş ödeme
+#### 1. **Check Membership Status**
+- Click "Memberships" page from left menu
+- View membership status by customer name
+- Status colors:
+  - 🟢 **Green**: Active membership
+  - 🟡 **Yellow**: Expiring soon (within 7 days)
+  - 🔴 **Red**: Expired or overdue payment
 
-#### 2. **Üyelik Yenileme (Devam Ettirme)**
-- Üyelik listesinde ilgili müşteriyi bulun
-- "🔄" (Yenile) butonuna tıklayın
-- Sistem otomatik olarak:
-  - Mevcut bitiş tarihini alır
-  - Üyelik tipine göre yeni bitiş tarihi hesaplar
-  - Ücreti günceller
-  - Ödeme durumunu "Bekliyor" yapar
+#### 2. **Membership Renewal (Continue)**
+- Find the relevant customer in membership list
+- Click "🔄" (Renew) button
+- System automatically:
+  - Takes current end date
+  - Calculates new end date based on membership type
+  - Updates fee
+  - Sets payment status to "Pending"
 
-#### 3. **Yeni Üyelik Ekleme**
-- "Yeni Üyelik" butonuna tıklayın
-- Gerekli bilgileri doldurun:
-  - **Müşteri**: Mevcut müşterilerden seçin
-  - **Üyelik Tipi**: Süre ve fiyat seçenekleri
-  - **Başlangıç Tarihi**: Üyeliğin başlayacağı tarih
-  - **Bitiş Tarihi**: Üyeliğin biteceği tarih
-  - **Ücret**: Üyelik ücreti
-  - **Ödeme Durumu**: Ödendi/Bekliyor/Gecikmiş
+#### 3. **Add New Membership**
+- Click "New Membership" button
+- Fill in required information:
+  - **Customer**: Select from existing customers
+  - **Membership Type**: Duration and price options
+  - **Start Date**: Date membership begins
+  - **End Date**: Date membership ends
+  - **Fee**: Membership fee
+  - **Payment Status**: Paid/Pending/Overdue
 
-#### 4. **Üyelik Düzenleme**
-- Üyelik listesinde "✏️" (Düzenle) butonuna tıklayın
-- Gerekli alanları güncelleyin
-- "Güncelle" butonuna tıklayın
+#### 4. **Edit Membership**
+- Click "✏️" (Edit) button in membership list
+- Update necessary fields
+- Click "Update" button
 
-## 🔧 Teknik Detaylar
+## 🔧 Technical Details
 
 ### **Backend API Endpoints**
 
 ```
-GET    /api/memberships              # Tüm üyelikleri getir
-GET    /api/memberships/:id          # ID'ye göre üyelik getir
-POST   /api/memberships              # Yeni üyelik ekle
-PUT    /api/memberships/:id          # Üyelik güncelle
-DELETE /api/memberships/:id          # Üyelik sil
-GET    /api/memberships/status/active # Aktif üyelikler
-GET    /api/memberships/status/expiring/:days # Süresi dolmak üzere
-GET    /api/memberships/status/expired # Süresi dolmuş
-GET    /api/memberships/payment/:status # Ödeme durumuna göre
-GET    /api/memberships/stats/overview # İstatistikler
+GET    /api/memberships              # Get all memberships
+GET    /api/memberships/:id          # Get membership by ID
+POST   /api/memberships              # Add new membership
+PUT    /api/memberships/:id          # Update membership
+DELETE /api/memberships/:id          # Delete membership
+GET    /api/memberships/status/active # Active memberships
+GET    /api/memberships/status/expiring/:days # Expiring soon
+GET    /api/memberships/status/expired # Expired
+GET    /api/memberships/payment/:status # By payment status
+GET    /api/memberships/stats/overview # Statistics
 ```
 
-### **Veritabanı Yapısı**
+### **Database Structure**
 
 ```sql
--- Üyelikler tablosu
-CREATE TABLE uyelikler (
+-- Memberships table
+CREATE TABLE memberships (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  musteri_id INTEGER,
-  uyelik_tipi_id INTEGER,
-  baslangic_tarihi DATE,
-  bitis_tarihi DATE,
-  ucret DECIMAL(10,2),
-  odeme_durumu TEXT,
-  kayit_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP,
-  aktif INTEGER DEFAULT 1
+  customer_id INTEGER,
+  membership_type_id INTEGER,
+  start_date DATE,
+  end_date DATE,
+  fee DECIMAL(10,2),
+  payment_status TEXT,
+  registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  active INTEGER DEFAULT 1
 );
 
--- Üyelik tipleri tablosu
-CREATE TABLE uyelik_tipleri (
+-- Membership types table
+CREATE TABLE membership_types (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  tip_adi TEXT,
-  sure_ay INTEGER,
-  fiyat DECIMAL(10,2),
-  aciklama TEXT,
-  aktif INTEGER DEFAULT 1
+  type_name TEXT,
+  duration_months INTEGER,
+  price DECIMAL(10,2),
+  description TEXT,
+  active INTEGER DEFAULT 1
 );
 ```
 
-## 📊 Üyelik Durumları
+## 📊 Membership Statuses
 
-### **Durum Renkleri ve Anlamları**
+### **Status Colors and Meanings**
 
-| Durum | Renk | Açıklama |
-|-------|------|----------|
-| **Aktif** | 🟢 Yeşil | Üyelik süresi devam ediyor |
-| **Süresi Dolmak Üzere** | 🟡 Sarı | 7 gün içinde süresi dolacak |
-| **Süresi Dolmuş** | 🔴 Kırmızı | Üyelik süresi sona erdi |
-| **Gecikmiş Ödeme** | 🔴 Kırmızı | Ödeme gecikmiş |
+| Status | Color | Description |
+|--------|-------|-------------|
+| **Active** | 🟢 Green | Membership duration continues |
+| **Expiring Soon** | 🟡 Yellow | Expires within 7 days |
+| **Expired** | 🔴 Red | Membership duration ended |
+| **Overdue Payment** | 🔴 Red | Payment is overdue |
 
-### **Ödeme Durumları**
+### **Payment Statuses**
 
-| Durum | Açıklama |
-|-------|----------|
-| **Ödendi** | Üyelik ücreti tamamen ödendi |
-| **Bekliyor** | Ödeme bekleniyor |
-| **Gecikmiş** | Ödeme gecikmiş |
+| Status | Description |
+|--------|-------------|
+| **Paid** | Membership fee fully paid |
+| **Pending** | Payment awaited |
+| **Overdue** | Payment is overdue |
 
-## 🎯 Üyelik Yenileme Süreci
+## 🎯 Membership Renewal Process
 
-### **Otomatik Hesaplama**
+### **Automatic Calculation**
 
-Sistem üyelik yenileme sırasında:
+System during membership renewal:
 
-1. **Mevcut bitiş tarihini** alır
-2. **Üyelik tipine göre** yeni süreyi hesaplar
-3. **Yeni bitiş tarihini** otomatik belirler
-4. **Güncel ücreti** uygular
-5. **Ödeme durumunu** "Bekliyor" yapar
+1. **Takes current end date**
+2. **Calculates new duration** based on membership type
+3. **Automatically determines** new end date
+4. **Applies current fee**
+5. **Sets payment status** to "Pending"
 
-### **Örnek Hesaplama**
+### **Calculation Example**
 
 ```
-Mevcut üyelik: 3 aylık (1 Ocak - 1 Nisan)
-Yenileme tarihi: 15 Mart
-Yeni bitiş: 1 Nisan + 3 ay = 1 Temmuz
+Current membership: 3 months (Jan 1 - Apr 1)
+Renewal date: March 15
+New end: Apr 1 + 3 months = July 1
 ```
 
-## 🔍 Sorun Giderme
+## 🔍 Troubleshooting
 
-### **Yaygın Sorunlar**
+### **Common Issues**
 
-#### 1. **Üyelik Yenilenemiyor**
-- Müşteri bilgilerinin doğru olduğundan emin olun
-- Üyelik tipinin aktif olduğunu kontrol edin
-- Veritabanı bağlantısını test edin
+#### 1. **Membership Cannot Be Renewed**
+- Ensure customer information is correct
+- Check if membership type is active
+- Test database connection
 
-#### 2. **Tarih Hataları**
-- Tarih formatının YYYY-MM-DD olduğundan emin olun
-- Geçmiş tarihleri kullanmayın
-- Bitiş tarihinin başlangıçtan sonra olduğunu kontrol edin
+#### 2. **Date Errors**
+- Ensure date format is YYYY-MM-DD
+- Don't use past dates
+- Check that end date is after start date
 
-#### 3. **API Hataları**
-- Backend'in çalıştığından emin olun
-- Port 3001'in açık olduğunu kontrol edin
-- Console'da hata mesajlarını inceleyin
+#### 3. **API Errors**
+- Ensure backend is running
+- Check if port 3001 is open
+- Review error messages in console
 
-### **Log Kontrolü**
+### **Log Control**
 
-Backend log'larını kontrol etmek için:
+To check backend logs:
 ```bash
-# Terminal'de backend çıktısını izleyin
+# Monitor backend output in terminal
 npm run server
 ```
 
-## 📈 İstatistikler ve Raporlar
+## 📈 Statistics and Reports
 
-### **Dashboard İstatistikleri**
+### **Dashboard Statistics**
 
-- **Toplam Üyelik**: Sistemdeki tüm üyelikler
-- **Aktif Üyelik**: Süresi devam eden üyelikler
-- **Süresi Dolmak Üzere**: 7 gün içinde süresi dolacak üyelikler
-- **Ödeme Bekleyen**: Ödeme bekleyen üyelikler
+- **Total Memberships**: All memberships in system
+- **Active Memberships**: Memberships with continuing duration
+- **Expiring Soon**: Memberships expiring within 7 days
+- **Payment Pending**: Memberships awaiting payment
 
-### **Filtreleme ve Arama**
+### **Filtering and Search**
 
-- Müşteri adına göre arama
-- Üyelik tipine göre filtreleme
-- Duruma göre filtreleme
-- Tarih aralığına göre filtreleme
+- Search by customer name
+- Filter by membership type
+- Filter by status
+- Filter by date range
 
-## 🚀 Gelecek Özellikler
+## 🚀 Future Features
 
-### **Planlanan Geliştirmeler**
+### **Planned Developments**
 
-- [ ] **Otomatik Hatırlatmalar**: SMS/Email ile üyelik süresi uyarıları
-- [ ] **Online Ödeme**: Kredi kartı ile online ödeme entegrasyonu
-- [ ] **Mobil Uygulama**: Müşteriler için mobil üyelik yönetimi
-- [ ] **Gelişmiş Raporlar**: Detaylı analiz ve grafikler
-- [ ] **Bulk İşlemler**: Toplu üyelik yenileme
-- [ ] **İndirim Sistemi**: Sadakat indirimleri ve kampanyalar
+- [ ] **Automatic Reminders**: SMS/Email membership duration warnings
+- [ ] **Online Payment**: Credit card online payment integration
+- [ ] **Mobile App**: Mobile membership management for customers
+- [ ] **Advanced Reports**: Detailed analysis and charts
+- [ ] **Bulk Operations**: Bulk membership renewal
+- [ ] **Discount System**: Loyalty discounts and campaigns
 
-## 📞 Destek
+## 📞 Support
 
-### **Teknik Destek**
+### **Technical Support**
 
-- **GitHub Issues**: Hata bildirimleri ve özellik istekleri
-- **Dokümantasyon**: Bu kılavuz ve API dokümantasyonu
-- **Log Dosyaları**: Backend ve frontend log'ları
+- **GitHub Issues**: Bug reports and feature requests
+- **Documentation**: This guide and API documentation
+- **Log Files**: Backend and frontend logs
 
-### **İletişim**
+### **Contact**
 
-- **Geliştirici**: AI Assistant
-- **Proje**: Spor Salonu Yönetim Sistemi
-- **Versiyon**: 1.0.0
+- **Developer**: AI Assistant
+- **Project**: Gym Management System
+- **Version**: 1.0.0
 
 ---
 
-## 🎉 Tebrikler!
+## 🎉 Congratulations!
 
-Artık spor salonu üyelik sisteminiz tamamen çalışır durumda! Müşterileriniz üyeliklerini kolayca devam ettirebilir, yeni üyelikler ekleyebilir ve tüm üyelik durumlarını takip edebilirsiniz.
+Your gym membership system is now fully operational! Your customers can easily continue their memberships, add new memberships, and track all membership statuses.
 
-**Önemli**: Sistem ilk kez çalıştırıldığında, veritabanı otomatik olarak oluşturulacak ve örnek veriler eklenecektir.
+**Important**: When the system is first run, the database will be automatically created and sample data will be added.
 
-**Güvenlik**: Admin şifresi varsayılan olarak "1" olarak ayarlanmıştır. Üretim ortamında mutlaka değiştirin! 
+**Security**: Admin password is set to "1" by default. Be sure to change it in production environment! 

@@ -1,123 +1,123 @@
-# Ödeme Durumu Takibi Özelliği
+# Payment Status Tracking Feature
 
-Bu özellik, gym yönetim sisteminde müşteri ödemelerinin durumunu takip etmenizi sağlar.
+This feature allows you to track the status of customer payments in the gym management system.
 
-## Özellikler
+## Features
 
-### 1. Ödeme Durumu Sütunu
-- **odeme_durumu** sütunu eklendi
-- **0**: Ödenmedi
-- **1**: Ödendi
+### 1. Payment Status Column
+- **odeme_durumu** column added
+- **0**: Not Paid
+- **1**: Paid
 
-### 2. Yeni API Endpoint'leri
+### 2. New API Endpoints
 
-#### Ödeme Durumu Güncelleme
+#### Update Payment Status
 ```
 PATCH /api/payments/:id/status
-Body: { "odeme_durumu": 0 veya 1 }
+Body: { "odeme_durumu": 0 or 1 }
 ```
 
-#### Ödenmemiş Ödemeleri Getir
+#### Get Unpaid Payments
 ```
 GET /api/payments/unpaid
 ```
 
-#### Ödenmiş Ödemeleri Getir
+#### Get Paid Payments
 ```
 GET /api/payments/paid
 ```
 
-### 3. Frontend Özellikleri
+### 3. Frontend Features
 
-#### Ödeme Durumu Görüntüleme
-- Her ödeme için durum badge'i (Ödendi/Ödenmedi)
-- Renk kodlaması: Yeşil (Ödendi), Kırmızı (Ödenmedi)
-- Tıklanabilir badge'ler (durumu değiştirmek için)
+#### Payment Status Display
+- Status badge for each payment (Paid/Not Paid)
+- Color coding: Green (Paid), Red (Not Paid)
+- Clickable badges (to change status)
 
-#### Filtreleme
-- Tüm durumlar
-- Sadece ödenenler
-- Sadece ödenmeyenler
+#### Filtering
+- All statuses
+- Only paid ones
+- Only unpaid ones
 
-#### Arama
-- Müşteri adı/soyadı
-- Ödeme yöntemi
+#### Search
+- Customer first name/last name
+- Payment method
 
-#### Özet Kartları
-- Toplam ödeme sayısı
-- Ödenen ödeme sayısı
-- Ödenmeyen ödeme sayısı
+#### Summary Cards
+- Total payment count
+- Paid payment count
+- Unpaid payment count
 
-## Kullanım
+## Usage
 
-### 1. Ödeme Durumu Değiştirme
-1. Ödemeler sayfasına gidin
-2. İlgili ödemenin durum badge'ine tıklayın
-3. Durum otomatik olarak değişecektir
+### 1. Changing Payment Status
+1. Go to the payments page
+2. Click on the status badge of the relevant payment
+3. Status will change automatically
 
-### 2. Filtreleme
-1. Üst kısımdaki dropdown'dan durum seçin
-2. "Tüm Durumlar", "Ödenenler" veya "Ödenmeyenler"
+### 2. Filtering
+1. Select status from the dropdown at the top
+2. "All Statuses", "Paid" or "Unpaid"
 
-### 3. Arama
-1. Arama kutusuna müşteri adı veya ödeme yöntemi yazın
-2. Sonuçlar anında filtrelenecektir
+### 3. Search
+1. Type customer name or payment method in the search box
+2. Results will be filtered instantly
 
-## Teknik Detaylar
+## Technical Details
 
-### Veritabanı Değişiklikleri
-- `odemeler` tablosuna `odeme_durumu` sütunu eklendi
-- Varsayılan değer: 0 (Ödenmedi)
-- Veri tipi: INTEGER
+### Database Changes
+- `odeme_durumu` column added to `odemeler` table
+- Default value: 0 (Not Paid)
+- Data type: INTEGER
 
-### Backend Değişiklikleri
-- Payment model güncellendi
-- Yeni controller metodları eklendi
-- Yeni route'lar eklendi
+### Backend Changes
+- Payment model updated
+- New controller methods added
+- New routes added
 
-### Frontend Değişiklikleri
-- Payments sayfası güncellendi
-- Ödeme durumu badge'leri eklendi
-- Filtreleme ve arama özellikleri eklendi
-- Özet kartları eklendi
+### Frontend Changes
+- Payments page updated
+- Payment status badges added
+- Filtering and search features added
+- Summary cards added
 
-## API Örnekleri
+## API Examples
 
-### Ödeme Durumu Güncelleme
+### Update Payment Status
 ```javascript
-// Ödeme durumunu "Ödendi" yap
+// Set payment status to "Paid"
 await paymentService.updatePaymentStatus(paymentId, 1);
 
-// Ödeme durumunu "Ödenmedi" yap
+// Set payment status to "Not Paid"
 await paymentService.updatePaymentStatus(paymentId, 0);
 ```
 
-### Ödenmemiş Ödemeleri Getir
+### Get Unpaid Payments
 ```javascript
 const unpaidPayments = await paymentService.getUnpaidPayments();
 ```
 
-### Ödenmiş Ödemeleri Getir
+### Get Paid Payments
 ```javascript
 const paidPayments = await paymentService.getPaidPayments();
 ```
 
-## Güvenlik
+## Security
 
-- Tüm API endpoint'leri kimlik doğrulama gerektirir
-- Sadece yetkili kullanıcılar ödeme durumu değiştirebilir
-- Tüm değişiklikler loglanır
+- All API endpoints require authentication
+- Only authorized users can change payment status
+- All changes are logged
 
-## Hata Yönetimi
+## Error Handling
 
-- Geçersiz durum değerleri için validasyon
-- Veritabanı hataları için uygun hata mesajları
-- Frontend'de kullanıcı dostu hata bildirimleri
+- Validation for invalid status values
+- Appropriate error messages for database errors
+- User-friendly error notifications in frontend
 
-## Gelecek Geliştirmeler
+## Future Improvements
 
-- Ödeme hatırlatıcıları
-- Otomatik ödeme takibi
-- Ödeme raporları
-- E-posta bildirimleri
-- SMS hatırlatıcıları 
+- Payment reminders
+- Automatic payment tracking
+- Payment reports
+- Email notifications
+- SMS reminders 

@@ -1,74 +1,74 @@
-# Veritabanı Migration: Ödeme Durumu Takibi
+# Database Migration: Payment Status Tracking
 
-Bu migration, ödeme durumu takibini `uyelikler` tablosundan `odemeler` tablosuna taşır.
+This migration moves payment status tracking from the `uyelikler` table to the `odemeler` table.
 
-## 🎯 Amaç
+## 🎯 Purpose
 
-- `uyelikler` tablosundan `odeme_durumu` alanını kaldır
-- `odemeler` tablosuna `odeme_durumu` alanını ekle
-- Ödeme durumu takibini sadece ödemeler tablosundan yap
+- Remove `odeme_durumu` field from `uyelikler` table
+- Add `odeme_durumu` field to `odemeler` table
+- Handle payment status tracking only from the payments table
 
-## 📋 Yapılan Değişiklikler
+## 📋 Changes Made
 
-### 1. Veritabanı Yapısı
-- `uyelikler` tablosundan `odeme_durumu` sütunu kaldırıldı
-- `odemeler` tablosuna `odeme_durumu` sütunu eklendi (INTEGER, 0/1)
+### 1. Database Structure
+- `odeme_durumu` column removed from `uyelikler` table
+- `odeme_durumu` column added to `odemeler` table (INTEGER, 0/1)
 
-### 2. Backend Modeller
-- `Stats.js`: `getUnpaidCustomers` fonksiyonu güncellendi
-- `Payment.js`: `updatePaymentStatus` fonksiyonu basitleştirildi
-- `Customer.js`: Müşteri sorguları güncellendi
-- `Membership.js`: Üyelik sorguları güncellendi
+### 2. Backend Models
+- `Stats.js`: `getUnpaidCustomers` function updated
+- `Payment.js`: `updatePaymentStatus` function simplified
+- `Customer.js`: Customer queries updated
+- `Membership.js`: Membership queries updated
 
 ### 3. Frontend
-- `Dashboard.js`: Ödeme durumu gösterimi güncellendi (1/0 → Ödendi/Ödenmedi)
+- `Dashboard.js`: Payment status display updated (1/0 → Paid/Unpaid)
 
-## 🚀 Migration Çalıştırma
+## 🚀 Running the Migration
 
-### Otomatik Migration
+### Automatic Migration
 ```bash
 npm run migrate
 ```
 
-### Manuel Migration
-1. Veritabanı dosyasını yedekleyin
-2. `server/migrations/run_migration.js` dosyasını çalıştırın
-3. Hata durumunda yedekten geri yükleyin
+### Manual Migration
+1. Backup the database file
+2. Run `server/migrations/run_migration.js` file
+3. Restore from backup if errors occur
 
-## ⚠️ Önemli Notlar
+## ⚠️ Important Notes
 
-1. **Yedek Alın**: Migration öncesi veritabanını yedekleyin
-2. **Test Edin**: Migration sonrası uygulamayı test edin
-3. **Geri Alma**: Hata durumunda yedekten geri yükleyin
+1. **Take Backup**: Backup the database before migration
+2. **Test**: Test the application after migration
+3. **Rollback**: Restore from backup if errors occur
 
-## 🔄 Migration Sonrası
+## 🔄 Post-Migration
 
-### Ödeme Durumu Değerleri
-- **0**: Ödenmedi
-- **1**: Ödendi
+### Payment Status Values
+- **0**: Unpaid
+- **1**: Paid
 
-### Dashboard'da Görünüm
-- Ödemesi yapılmayan müşteriler artık sadece ödemeler tablosundan kontrol ediliyor
-- Ödeme yapıldığında liste otomatik güncelleniyor
+### Dashboard Display
+- Unpaid customers are now checked only from the payments table
+- List automatically updates when payment is made
 
-## 🐛 Sorun Giderme
+## 🐛 Troubleshooting
 
-### Migration Hatası
+### Migration Error
 ```bash
-# Hata loglarını kontrol edin
+# Check error logs
 npm run migrate
 
-# Manuel olarak migration script'ini çalıştırın
+# Manually run the migration script
 node server/migrations/run_migration.js
 ```
 
-### Veri Kaybı
-- Yedek dosyadan geri yükleyin
-- Migration'ı tekrar çalıştırın
+### Data Loss
+- Restore from backup file
+- Run the migration again
 
-## 📞 Destek
+## 📞 Support
 
-Migration sırasında sorun yaşarsanız:
-1. Hata mesajlarını kaydedin
-2. Veritabanı yedeğini kontrol edin
-3. Geliştirici ekibiyle iletişime geçin 
+If you encounter issues during migration:
+1. Save error messages
+2. Check database backup
+3. Contact the development team 

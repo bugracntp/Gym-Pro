@@ -1,171 +1,171 @@
-# Spor Salonu Yönetim Uygulaması
+# Gym Management Application
 
-Bu uygulama, spor salonu müşterilerini, ödemelerini ve üyeliklerini yönetmek için geliştirilmiş bir web uygulamasıdır.
+This application is a web application developed to manage gym customers, payments, and memberships.
 
-## 🚀 Kurulum ve Çalıştırma
+## 🚀 Installation and Running
 
-### Gereksinimler
-- Node.js (v14 veya üzeri)
-- npm veya yarn
+### Requirements
+- Node.js (v14 or higher)
+- npm or yarn
 
-### Kurulum
-1. Projeyi klonlayın:
+### Installation
+1. Clone the project:
 ```bash
 git clone <repository-url>
 cd gym
 ```
 
-2. Bağımlılıkları yükleyin:
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-### Çalıştırma
-Uygulamayı geliştirme modunda çalıştırmak için:
+### Running
+To run the application in development mode:
 
 ```bash
 npm run dev
 ```
 
-Bu komut hem backend (port 3001) hem de frontend (port 3000) server'larını başlatacaktır.
+This command will start both backend (port 3001) and frontend (port 3000) servers.
 
-Alternatif olarak, sadece backend'i çalıştırmak için:
+Alternatively, to run only the backend:
 ```bash
 npm run server
 ```
 
-Sadece frontend'i çalıştırmak için:
+To run only the frontend:
 ```bash
 npm start
 ```
 
-## 🎯 Özellikler
+## 🎯 Features
 
-### ✅ Tamamlanan Özellikler
-- **Müşteri Yönetimi**: Yeni müşteri ekleme, düzenleme, silme
-- **Veritabanı Entegrasyonu**: SQLite veritabanı ile tam entegrasyon
-- **Modern UI**: Tailwind CSS ile responsive tasarım
-- **Form Validasyonu**: Kapsamlı form validasyonu ve hata yönetimi
+### ✅ Completed Features
+- **Customer Management**: Add, edit, delete new customers
+- **Database Integration**: Full integration with SQLite database
+- **Modern UI**: Responsive design with Tailwind CSS
+- **Form Validation**: Comprehensive form validation and error handling
 
-### 🔄 Geliştirilmekte Olan Özellikler
-- Ödeme yönetimi
-- Üyelik yönetimi
-- Giriş/çıkış takibi
-- Raporlama ve istatistikler
+### 🔄 Features Under Development
+- Payment management
+- Membership management
+- Check-in/check-out tracking
+- Reporting and statistics
 
-## 🧪 Test Etme
+## 🧪 Testing
 
-### Müşteri Ekleme İşlevi Testi
+### Customer Addition Function Test
 
-1. Uygulamayı başlatın: `npm run dev`
-2. Browser'da `http://localhost:3000` adresine gidin
-3. Sol menüden "Müşteriler" sayfasına tıklayın
-4. "Yeni Müşteri" butonuna tıklayın
-5. Modal açılacak ve form görünecektir
-6. Gerekli alanları doldurun:
-   - **Ad** (zorunlu)
-   - **Soyad** (zorunlu)
-   - **Telefon** (zorunlu)
-   - **Email** (opsiyonel)
-   - **TC Kimlik No** (opsiyonel, 11 haneli)
-   - **Doğum Tarihi** (opsiyonel)
-   - **Cinsiyet** (opsiyonel)
-   - **Adres** (opsiyonel)
-   - **Acil Durum Kişisi** (opsiyonel)
-   - **Acil Durum Telefonu** (opsiyonel)
-   - **Notlar** (opsiyonel)
-7. "Müşteri Ekle" butonuna tıklayın
-8. Başarılı olursa modal kapanacak ve müşteri listesinde yeni müşteri görünecektir
+1. Start the application: `npm run dev`
+2. Go to `http://localhost:3000` in your browser
+3. Click on "Customers" from the left menu
+4. Click on "New Customer" button
+5. A modal will open and the form will appear
+6. Fill in the required fields:
+   - **Ad** (required)
+   - **Soyad** (required)
+   - **Telefon** (required)
+   - **Email** (optional)
+   - **TC Kimlik No** (optional, 11 digits)
+   - **Doğum Tarihi** (optional)
+   - **Cinsiyet** (optional)
+   - **Adres** (optional)
+   - **Acil Durum Kişisi** (optional)
+   - **Acil Durum Telefonu** (optional)
+   - **Notlar** (optional)
+7. Click on "Add Customer" button
+8. If successful, the modal will close and the new customer will appear in the customer list
 
-### API Testi
+### API Testing
 
-Backend API'sini test etmek için:
+To test the backend API:
 
 ```bash
-# Müşteri listesini getir
+# Get customer list
 curl http://localhost:3001/api/customers
 
-# Yeni müşteri ekle
+# Add new customer
 curl -X POST http://localhost:3001/api/customers \
   -H "Content-Type: application/json" \
-  -d '{"ad":"Test","soyad":"Müşteri","telefon":"05551234567"}'
+  -d '{"ad":"Test","soyad":"Customer","telefon":"05551234567"}'
 
-# Server sağlık kontrolü
+# Server health check
 curl http://localhost:3001/health
 ```
 
-## 🏗️ Proje Yapısı
+## 🏗️ Project Structure
 
 ```
 gym/
-├── src/                    # Frontend kaynak kodları
-│   ├── components/         # React bileşenleri
-│   │   ├── ui/            # UI bileşenleri (Button, Input, Modal)
-│   │   ├── pages/         # Sayfa bileşenleri
-│   │   └── layout/        # Layout bileşenleri
-│   ├── services/          # API servisleri
+├── src/                    # Frontend source code
+│   ├── components/         # React components
+│   │   ├── ui/            # UI components (Button, Input, Modal)
+│   │   ├── pages/         # Page components
+│   │   └── layout/        # Layout components
+│   ├── services/          # API services
 │   ├── hooks/             # Custom React hooks
-│   └── constants/         # Sabitler
-├── server/                 # Backend kaynak kodları
-│   ├── models/            # Veritabanı modelleri
-│   ├── controllers/       # İş mantığı kontrolcüleri
-│   ├── routes/            # API route'ları
-│   ├── utils/             # Yardımcı fonksiyonlar
-│   └── index.js           # Ana server dosyası
-├── database.sqlite         # SQLite veritabanı
-└── package.json           # Proje bağımlılıkları
+│   └── constants/         # Constants
+├── server/                 # Backend source code
+│   ├── models/            # Database models
+│   ├── controllers/       # Business logic controllers
+│   ├── routes/            # API routes
+│   ├── utils/             # Helper functions
+│   └── index.js           # Main server file
+├── database.sqlite         # SQLite database
+└── package.json           # Project dependencies
 ```
 
-## 🔧 Teknik Detaylar
+## 🔧 Technical Details
 
 ### Frontend
-- **React 18** - Modern React hooks ve functional components
+- **React 18** - Modern React hooks and functional components
 - **Tailwind CSS** - Utility-first CSS framework
-- **Lucide React** - Modern icon kütüphanesi
-- **Custom Hooks** - API entegrasyonu için özel hooks
+- **Lucide React** - Modern icon library
+- **Custom Hooks** - Custom hooks for API integration
 
 ### Backend
 - **Express.js** - Node.js web framework
-- **SQLite3** - Hafif, dosya tabanlı veritabanı
-- **RESTful API** - Standart HTTP metodları
+- **SQLite3** - Lightweight, file-based database
+- **RESTful API** - Standard HTTP methods
 - **Middleware** - CORS, body parsing, error handling
 
-### Veritabanı
-- **SQLite** - Tek dosya veritabanı
-- **Normalized Schema** - İlişkisel veri yapısı
+### Database
+- **SQLite** - Single file database
+- **Normalized Schema** - Relational data structure
 - **Foreign Keys** - Referential integrity
-- **Indexes** - Performans optimizasyonu
+- **Indexes** - Performance optimization
 
-## 🐛 Bilinen Sorunlar
+## 🐛 Known Issues
 
-- PowerShell'de Türkçe karakterlerle curl komutları sorun çıkarabilir
-- Node.js v14'te fetch API mevcut değil (built-in http modülü kullanılıyor)
+- PowerShell may have issues with curl commands containing Turkish characters
+- Node.js v14 doesn't have fetch API (built-in http module is used)
 
-## 📝 Geliştirme Notları
+## 📝 Development Notes
 
-### Müşteri Ekleme İşlevi
-- Form validasyonu client-side yapılıyor
-- Backend'de de ek validasyon mevcut
-- Başarılı ekleme sonrası liste otomatik yenileniyor
-- Modal form state'i temizleniyor
+### Customer Addition Function
+- Form validation is done client-side
+- Additional validation exists on the backend
+- List automatically refreshes after successful addition
+- Modal form state is cleared
 
-### Veritabanı
-- SQLite veritabanı otomatik oluşturuluyor
-- Tablolar ve örnek veriler otomatik ekleniyor
-- Soft delete kullanılıyor (aktif = 0)
+### Database
+- SQLite database is created automatically
+- Tables and sample data are added automatically
+- Soft delete is used (aktif = 0)
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing
 
-1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Commit yapın (`git commit -m 'Add amazing feature'`)
-4. Push yapın (`git push origin feature/amazing-feature`)
-5. Pull Request oluşturun
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📄 Lisans
+## 📄 License
 
-Bu proje MIT lisansı altında lisanslanmıştır.
+This project is licensed under the MIT License.
 
-## 📞 İletişim
+## 📞 Contact
 
-Sorularınız için issue açabilir veya pull request gönderebilirsiniz. 
+You can open an issue for questions or send a pull request. 
